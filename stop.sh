@@ -1,2 +1,10 @@
 #!/bin/bash
-sudo kill $(ps -aux | grep 'collecting' | awk 'NR==2{print $2}')
+PID=$(ps -ef | grep collecting-0.0.1-SNAPSHOT.jar | grep -v grep | awk '{ print $2 }')
+if [ -z "$PID" ]
+then
+    echo Application is already stopped!
+else
+    echo kill $PID
+    kill $PID
+    echo $PID has been stopped!
+fi

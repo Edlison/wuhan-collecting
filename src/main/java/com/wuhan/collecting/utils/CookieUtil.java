@@ -5,11 +5,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CookieUtil {
-    public static void setCookie(HttpServletResponse response, HttpServletRequest request, String name, String value, Integer cookieMaxAge) {
+    public static void setCookie(HttpServletResponse response, HttpServletRequest request, String name, String value) {
         request.getSession().removeAttribute("token");
         Cookie token = new Cookie(name, value);
         token.setPath("/");
-        token.setMaxAge(cookieMaxAge);
+        token.setMaxAge(5);
+        response.addCookie(token);
+    }
+
+    public static void setCookie(HttpServletResponse response, HttpServletRequest request, String name, String value, Integer maxAge) {
+        request.getSession().removeAttribute("token");
+        Cookie token = new Cookie(name, value);
+        token.setPath("/");
+        token.setMaxAge(maxAge);
         response.addCookie(token);
     }
 }

@@ -27,7 +27,7 @@ public class UserService {
 
         if (res.getStatus() == 100) {
             String token = UUID.randomUUID().toString();
-            CookieUtil.setCookie(response, request, "token", token, 60 * 60 * 24);
+            CookieUtil.setCookie(response, request, "token", token);
             userMapper.setToken(phone, token);
         }
 

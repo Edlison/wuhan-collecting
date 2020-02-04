@@ -39,6 +39,6 @@ public class IndexController {
 
         CookieUtil.setCookie(response, request, "token", null, 0);
 
-        return "index";
+        return "redirect:/login";
     }
 }

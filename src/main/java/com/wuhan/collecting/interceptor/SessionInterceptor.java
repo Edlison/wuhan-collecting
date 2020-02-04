@@ -9,9 +9,10 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 @Service
-public class SessionInterceptor implements HandlerInterceptor{
+public class SessionInterceptor implements HandlerInterceptor {
 
     @Autowired
     UserMapper userMapper;
@@ -21,7 +22,7 @@ public class SessionInterceptor implements HandlerInterceptor{
         Cookie[] cookies = request.getCookies();
 
         if (cookies != null && cookies.length != 0) {
-            for (Cookie cookie: cookies) {
+            for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token")) {
                     String token = cookie.getValue();
                     User user = userMapper.checkToken(token);
@@ -29,7 +30,8 @@ public class SessionInterceptor implements HandlerInterceptor{
                 }
             }
         }
-
+        PrintWriter printWriter = response.getWriter();
+        printWriter.write("{'status:'0, 'desc':'not login!', 'data':}");
         return false;
     }
 }

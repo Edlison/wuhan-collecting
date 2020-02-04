@@ -17,3 +17,4 @@ echo '3. 清理原有项目...'
 mvn clean
 echo '4. 打包...'
 mvn package
+echo '5. 打包完成!'
