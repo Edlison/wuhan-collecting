@@ -30,8 +30,10 @@ public class SessionInterceptor implements HandlerInterceptor {
                 }
             }
         }
+
         PrintWriter printWriter = response.getWriter();
-        printWriter.write("{'status:'0, 'desc':'not login!', 'data':}");
+        printWriter.write("{\"status\":0, \"desc\":\"not login!\", \"data\":null}");
+        response.sendRedirect("/login");
         return false;
     }
 }

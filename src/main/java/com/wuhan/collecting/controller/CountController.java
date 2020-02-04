@@ -10,7 +10,6 @@
 package com.wuhan.collecting.controller;
 
 import com.wuhan.collecting.DTO.CountDTO;
-import com.wuhan.collecting.model.Count;
 import com.wuhan.collecting.result.SystemResult;
 import com.wuhan.collecting.service.CountService;
 import org.springframework.beans.factory.annotation.Autowired;
