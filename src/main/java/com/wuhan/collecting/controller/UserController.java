@@ -13,7 +13,6 @@ import com.wuhan.collecting.DTO.UserDTO;
 import com.wuhan.collecting.model.User;
 import com.wuhan.collecting.result.SystemResult;
 import com.wuhan.collecting.service.UserService;
-import com.wuhan.collecting.utils.CookieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/api/user")

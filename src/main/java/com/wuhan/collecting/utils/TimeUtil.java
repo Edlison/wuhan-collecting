@@ -1,6 +1,9 @@
 package com.wuhan.collecting.utils;
 
+import org.springframework.util.StringUtils;
+
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TimeUtil {
     /**
@@ -11,15 +14,23 @@ public class TimeUtil {
      *
      * @return time
      */
-    public static String Date2TimeStamp(String dateStr) {
+    public static long Date2TimeStamp(String dateStr) {
         try {
             //String format = "yyyy-MM-dd HH:mm:ss";
             String format = "yyyy-mm-dd";
             SimpleDateFormat sdf = new SimpleDateFormat(format);
-            return String.valueOf(sdf.parse(dateStr).getTime() / 1000);
+            return sdf.parse(dateStr).getTime() / 1000;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "";
+        return 0;
+    }
+
+    public static String TimeStamp2Date(long timeStamp) {
+        String format = "yyyy-mm-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        Date date = new Date(timeStamp * 1000);
+        String res = simpleDateFormat.format(date);
+        return res;
     }
 }

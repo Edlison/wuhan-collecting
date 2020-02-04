@@ -60,8 +60,8 @@ public class UserAppoint {
 
         user.setPassword(MD5Util.string2MD5(user.getPassword()));
         user.setStatus(1);
-        user.setCreateTime(System.currentTimeMillis());
-        user.setModifiedTime(System.currentTimeMillis());
+        user.setCreateTime(System.currentTimeMillis() / 1000L);
+        user.setModifiedTime(System.currentTimeMillis() / 1000L);
 
         userMapper.insert(user);
 

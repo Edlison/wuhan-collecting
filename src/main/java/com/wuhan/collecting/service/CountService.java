@@ -1,5 +1,6 @@
 package com.wuhan.collecting.service;
 
+import com.wuhan.collecting.DTO.CountDTO;
 import com.wuhan.collecting.appoint.CountAppoint;
 import com.wuhan.collecting.model.Count;
 import com.wuhan.collecting.result.SystemResult;
@@ -12,9 +13,9 @@ public class CountService {
     @Autowired
     CountAppoint countAppoint;
 
-    public SystemResult insert(Count count) {
+    public SystemResult insert(CountDTO countDTO) {
 
-        SystemResult res = countAppoint.insert(count);
+        SystemResult res = countAppoint.insert(countDTO);
 
         return res;
     }

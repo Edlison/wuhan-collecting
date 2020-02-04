@@ -3,6 +3,7 @@ package com.wuhan.collecting.service;
 import com.wuhan.collecting.DTO.LocationDTO;
 import com.wuhan.collecting.DTO.PatientDTO;
 import com.wuhan.collecting.appoint.InfoAppoint;
+import com.wuhan.collecting.model.LocationDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

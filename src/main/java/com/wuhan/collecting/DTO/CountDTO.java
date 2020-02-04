@@ -1,12 +1,21 @@
-package com.wuhan.collecting.model;
+/*
+ * Copyright (c) 2020.
+ *
+ * Project Name: collecting.
+ * Date: 2020/2/4 下午4:03
+ *
+ * Author: Edlison.
+ */
+
+package com.wuhan.collecting.DTO;
 
 import lombok.Data;
 
 @Data
-public class Count {
+public class CountDTO {
     private long id;
     private long countRegionId;
-    private long countDate;
+    private String countDate;
     private long countConfirm;
     private long countRecover;
     private long countDead;
@@ -15,4 +24,3 @@ public class Count {
     private long countCreateTime;
     private long countModifiedTime;
 }
-

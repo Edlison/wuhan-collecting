@@ -1,7 +1,7 @@
 package com.wuhan.collecting.mapper;
 
-import com.wuhan.collecting.DTO.LocationDTO;
-import com.wuhan.collecting.DTO.PatientDTO;
+import com.wuhan.collecting.model.LocationDAO;
+import com.wuhan.collecting.model.PatientDAO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -14,8 +14,8 @@ import java.util.List;
 public interface InfoMapper {
 
     @Select("Select id, level, code, name from region where pid = #{id}")
-    List<LocationDTO> getPid(@Param("id") long id);
+    List<LocationDAO> getPid(@Param("id") long id);
 
-    @Select("Select id, case_sex, case_age, case_confirm_time, case_source_url from `case` where case_region_id = #{locId} and case_date = #{date}")
-    List<PatientDTO> getPat(long locId, String date);
+    @Select("Select id, sample_sex, sample_age, sample_confirm_time, sample_source_url from sample where sample_region_id = #{locId} and sample_date = #{date}")
+    List<PatientDAO> getPat(long locId, long date);
 }

@@ -1,5 +1,6 @@
 package com.wuhan.collecting.appoint;
 
+import com.wuhan.collecting.DTO.CountDTO;
 import com.wuhan.collecting.mapper.CountMapper;
 import com.wuhan.collecting.model.Count;
 import com.wuhan.collecting.result.SystemResult;
@@ -14,18 +15,33 @@ public class CountAppoint {
     @Autowired
     CountMapper countMapper;
 
-    public SystemResult insert(Count count) {
+    public SystemResult insert(CountDTO countDTO) {
 
-        if (count == null) {
+        if (countDTO == null) {
             return new SystemResult(301, "请填写表单");
         }
 
-        if (!StringUtils.isEmpty(count.getCountDate())) {   //还要约束
-            count.setCountDate(TimeUtil.Date2TimeStamp(count.getCountDate()));
+        //Data Trans CountDTO to Count
+        Count count = new Count();
+
+        count.setCountRegionId(countDTO.getCountRegionId());
+
+        if (!StringUtils.isEmpty(countDTO.getCountDate())) {   //还要约束
+            count.setCountDate(TimeUtil.Date2TimeStamp(countDTO.getCountDate()));
         }
 
-        count.setCountCreateTime(System.currentTimeMillis());
-        count.setCountModifiedTime(System.currentTimeMillis());
+        count.setCountConfirm(countDTO.getCountConfirm());
+        count.setCountRecover(countDTO.getCountRecover());
+        count.setCountDead(countDTO.getCountDead());
+
+        if (!StringUtils.isEmpty(countDTO.getCountSourceUrl())) {
+            count.setCountSourceUrl(countDTO.getCountSourceUrl());
+        }
+
+        count.setCountUserId(countDTO.getCountUserId());
+
+        count.setCountCreateTime(System.currentTimeMillis() / 1000L);
+        count.setCountModifiedTime(System.currentTimeMillis() / 1000L);
 
         countMapper.insert(count);
 

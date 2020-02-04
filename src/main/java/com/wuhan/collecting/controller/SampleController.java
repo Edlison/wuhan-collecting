@@ -9,9 +9,10 @@
 
 package com.wuhan.collecting.controller;
 
-import com.wuhan.collecting.model.Case;
+import com.wuhan.collecting.DTO.SampleDTO;
+import com.wuhan.collecting.model.Sample;
 import com.wuhan.collecting.result.SystemResult;
-import com.wuhan.collecting.service.CaseService;
+import com.wuhan.collecting.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,17 +20,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/case")
-public class CaseController {
+@RequestMapping("/api/sample")
+public class SampleController {
 
     @Autowired
-    CaseService caseService;
+    SampleService sampleService;
 
     @RequestMapping(value = "/insert" , method = RequestMethod.POST)
     @ResponseBody
-    public SystemResult insert(@RequestBody List<Case> cases) {
+    public SystemResult insert(@RequestBody List<SampleDTO> sampleDTOS) {
 
-        SystemResult res = caseService.insert(cases);
+        SystemResult res = sampleService.insert(sampleDTOS);
 
         return res;
     }

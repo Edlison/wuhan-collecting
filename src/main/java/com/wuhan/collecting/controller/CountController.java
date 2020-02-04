@@ -9,6 +9,7 @@
 
 package com.wuhan.collecting.controller;
 
+import com.wuhan.collecting.DTO.CountDTO;
 import com.wuhan.collecting.model.Count;
 import com.wuhan.collecting.result.SystemResult;
 import com.wuhan.collecting.service.CountService;
@@ -27,9 +28,9 @@ public class CountController {
 
     @PostMapping("/insert")
     @ResponseBody
-    public SystemResult insert(Count count) {
+    public SystemResult insert(CountDTO countDTO) {
 
-        SystemResult res = countService.insert(count);
+        SystemResult res = countService.insert(countDTO);
 
         return res;
     }
