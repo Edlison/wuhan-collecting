@@ -6,13 +6,13 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class WebInterceptorConfig implements WebMvcConfigurer {
 
     @Autowired
     SessionInterceptor sessionInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(sessionInterceptor).addPathPatterns("/**").excludePathPatterns("/login").excludePathPatterns("/register").excludePathPatterns("/api/user/login");
+        registry.addInterceptor(sessionInterceptor).addPathPatterns("/**").excludePathPatterns("/login").excludePathPatterns("/register").excludePathPatterns("/api/user/login").excludePathPatterns("/api/user/register");
     }
 }

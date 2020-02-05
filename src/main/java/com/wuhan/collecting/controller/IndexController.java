@@ -19,26 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class IndexController {
 
-    @GetMapping({"/", "index"})
-    public String index() {
-        return "index";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @GetMapping("/register")
-    public String register() {
-        return "register";
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpServletResponse response, HttpServletRequest request) {
-
-        CookieUtil.setCookie(response, request, "token", null, 0);
-
-        return "redirect:/login";
-    }
+//    @GetMapping("/logout")
+//    public String logout(HttpServletResponse response, HttpServletRequest request) {
+//
+//        CookieUtil.setCookie(response, request, "token", null, 0);
+//
+//        return "redirect:/login";
+//    }
 }

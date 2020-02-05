@@ -9,7 +9,7 @@ public class CookieUtil {
         request.getSession().removeAttribute("token");
         Cookie token = new Cookie(name, value);
         token.setPath("/");
-        token.setMaxAge(5);
+        token.setMaxAge(60 * 60 * 24);
         response.addCookie(token);
     }
 
