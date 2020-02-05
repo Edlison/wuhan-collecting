@@ -24,29 +24,36 @@ public class SampleAppoint {
         //Data Trans SampleDTO to Sample
         Sample sample = new Sample();
 
-        sample.setSampleRegionId(sampleDTO.getSampleRegionId());
+        if (sampleDTO.getSampleRegionId() >= 0)
+            sample.setSampleRegionId(sampleDTO.getSampleRegionId());
 
-        if (!StringUtils.isEmpty(sampleDTO.getSampleDate())) {
+        if (!StringUtils.isEmpty(sampleDTO.getSampleDate()))
             sample.setSampleDate(TimeUtil.Date2TimeStamp(sampleDTO.getSampleDate()));
-        }
 
-        sample.setSampleSex(sampleDTO.getSampleSex());
-        sample.setSampleAge(sampleDTO.getSampleAge());
+        if (sampleDTO.getSampleSex() >= 0)
+            sample.setSampleSex(sampleDTO.getSampleSex());
 
-        if (!StringUtils.isEmpty(sampleDTO.getSampleConfirmTime())) {
+        if (sampleDTO.getSampleAge() >= 0)
+            sample.setSampleAge(sampleDTO.getSampleAge());
+
+        if (!StringUtils.isEmpty(sampleDTO.getSampleConfirmTime()))
             sample.setSampleConfirmTime(TimeUtil.Date2TimeStamp(sampleDTO.getSampleConfirmTime()));
-        }
 
-        if (!StringUtils.isEmpty(sampleDTO.getSampleSourceUrl())) {
+        if (!StringUtils.isEmpty(sampleDTO.getSampleSourceUrl()))
             sample.setSampleSourceUrl(sampleDTO.getSampleSourceUrl());
-        }
 
-        sample.setSampleUserId(sampleDTO.getSampleUserId());
+        if (sampleDTO.getSampleUserId() >= 0)
+            sample.setSampleUserId(sampleDTO.getSampleUserId());
 
         sample.setSampleCreateTime(System.currentTimeMillis() / 1000L);
         sample.setSampleModifiedTime(System.currentTimeMillis() / 1000L);
         sampleMapper.insert(sample);
 
-        return new SystemResult(400, "case插入成功");
+        return new SystemResult(400, "sample插入成功");
+    }
+
+    public SystemResult delete(String patId) {
+        sampleMapper.delete(patId);
+        return new SystemResult(400, "sample删除成功");
     }
 }

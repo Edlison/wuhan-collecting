@@ -9,8 +9,10 @@
 
 package com.wuhan.collecting.controller;
 
+import com.wuhan.collecting.DTO.CountDTO;
 import com.wuhan.collecting.DTO.LocationDTO;
 import com.wuhan.collecting.DTO.PatientDTO;
+import com.wuhan.collecting.model.Count;
 import com.wuhan.collecting.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +34,16 @@ public class InfoController {
         List<LocationDTO> locs = infoService.getNextLoc(locId);
 
         return locs;
+    }
+
+    @PostMapping("/getCount")
+    @ResponseBody
+    public Count getCount(@RequestParam(name = "locId") long locId,
+                          @RequestParam(name = "date") String date) {
+
+        Count count = infoService.getCount(locId, date);
+
+        return count;
     }
 
     @PostMapping("/getPat")

@@ -33,4 +33,13 @@ public class SampleController {
 
         return res;
     }
+
+    @RequestMapping(value = "/delete" , method = RequestMethod.POST)
+    @ResponseBody
+    public SystemResult insert(@RequestParam(name = "patId") String patId) {
+
+        SystemResult res = sampleService.delete(patId);
+
+        return res;
+    }
 }

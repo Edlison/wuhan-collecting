@@ -24,27 +24,44 @@ public class CountAppoint {
         //Data Trans CountDTO to Count
         Count count = new Count();
 
-        count.setCountRegionId(countDTO.getCountRegionId());
+        if (countDTO.getCountRegionId() >= 0)
+            count.setCountRegionId(countDTO.getCountRegionId());
 
-        if (!StringUtils.isEmpty(countDTO.getCountDate())) {   //还要约束
+        if (!StringUtils.isEmpty(countDTO.getCountDate()))
             count.setCountDate(TimeUtil.Date2TimeStamp(countDTO.getCountDate()));
-        }
 
-        count.setCountConfirm(countDTO.getCountConfirm());
-        count.setCountRecover(countDTO.getCountRecover());
-        count.setCountDead(countDTO.getCountDead());
+        Count tempCount = countMapper.checkCount(count.getCountRegionId(), count.getCountDate());
 
-        if (!StringUtils.isEmpty(countDTO.getCountSourceUrl())) {
+        if (countDTO.getCountConfirm() >= 0)
+            count.setCountConfirm(countDTO.getCountConfirm());
+
+        if (countDTO.getCountRecover() >= 0)
+            count.setCountRecover(countDTO.getCountRecover());
+
+        if (countDTO.getCountDead() >= 0)
+            count.setCountDead(countDTO.getCountDead());
+
+        if (!StringUtils.isEmpty(countDTO.getCountSourceUrl()))
             count.setCountSourceUrl(countDTO.getCountSourceUrl());
+
+        if (countDTO.getCountUserId() >= 0)
+            count.setCountUserId(countDTO.getCountUserId());
+
+        if (tempCount == null) {
+
+            count.setCountCreateTime(System.currentTimeMillis() / 1000L);
+            count.setCountModifiedTime(System.currentTimeMillis() / 1000L);
+
+            countMapper.insert(count);
+
+            return new SystemResult(300, "count插入成功");
+        } else {
+
+            count.setCountModifiedTime(System.currentTimeMillis() / 1000L);
+
+            countMapper.update(count);
+
+            return new SystemResult(300, "count更新成功");
         }
-
-        count.setCountUserId(countDTO.getCountUserId());
-
-        count.setCountCreateTime(System.currentTimeMillis() / 1000L);
-        count.setCountModifiedTime(System.currentTimeMillis() / 1000L);
-
-        countMapper.insert(count);
-
-        return new SystemResult(300, "count插入成功");
     }
 }

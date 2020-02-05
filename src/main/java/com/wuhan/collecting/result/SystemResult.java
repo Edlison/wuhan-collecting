@@ -5,7 +5,7 @@ public class   SystemResult {
      * 100 login
      * 200 register
      * 300 count
-     * 400 case
+     * 400 sample
      */
     private Integer status;
     private String desc;

@@ -27,4 +27,11 @@ public class SampleService {
 
         return new SystemResult(400, "case插入成功");
     }
+
+    public SystemResult delete(String patId) {
+
+        SystemResult res = sampleAppoint.delete(patId);
+
+        return res;
+    }
 }
