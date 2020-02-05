@@ -18,6 +18,6 @@ public interface CountMapper {
     @Select("Select * from count where count_region_id = #{locId} and count_date = #{date}")
     Count checkCount(long locId, long date);
 
-    @Update("Update count set count_confirm = #{countConfirm}, count_recover = #{countRecover}, count_dead = #{countDead}, count_source_url = #{countSourceUrl}, count_user_id = #{countUserId}, count_modified_time = #{countModifiedTime}")
+    @Update("Update count set count_confirm = #{countConfirm}, count_recover = #{countRecover}, count_dead = #{countDead}, count_source_url = #{countSourceUrl}, count_user_id = #{countUserId}, count_modified_time = #{countModifiedTime} where count_region_id = #{countRegionId} and count_date = #{countDate}")
     void update(Count count);
 }
