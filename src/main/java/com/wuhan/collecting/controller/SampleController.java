@@ -10,7 +10,6 @@
 package com.wuhan.collecting.controller;
 
 import com.wuhan.collecting.DTO.SampleDTO;
-import com.wuhan.collecting.model.Sample;
 import com.wuhan.collecting.result.SystemResult;
 import com.wuhan.collecting.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired;
