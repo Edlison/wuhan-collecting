@@ -9,7 +9,7 @@
 
 package com.wuhan.collecting.controller;
 
-import com.wuhan.collecting.DTO.UserDTO;
+import com.alibaba.fastjson.JSONObject;
 import com.wuhan.collecting.model.User;
 import com.wuhan.collecting.result.SystemResult;
 import com.wuhan.collecting.service.UserService;
@@ -31,21 +31,22 @@ public class UserController {
 
     @PostMapping("/login")
     @ResponseBody
-    public UserDTO login(String phone, String password, HttpServletResponse response, HttpServletRequest request) {
+    public String login(String phone, String password, HttpServletResponse response, HttpServletRequest request) {
         SystemResult res = userService.login(phone, password, response, request);
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setStatus(res.getStatus());
-        userDTO.setDesc(res.getDesc());
+        JSONObject json = new JSONObject();
+        json.put("status", res.getStatus());
+        json.put("desc", res.getDesc());
 
         if (res.getStatus() == 100) {
 
-            userDTO.setRegionId(Long.parseLong(res.getData()));
+            json.put("regionId", res.getData());
+            json.put("phone", phone);
 
-            return userDTO;
+            return json.toJSONString();
         }
 
-        return userDTO;
+        return json.toJSONString();
     }
 
     @PostMapping("/register")
