@@ -1,5 +1,6 @@
 package com.wuhan.collecting.appoint;
 
+import com.wuhan.collecting.DTO.GetCountDTO;
 import com.wuhan.collecting.DTO.LocationDTO;
 import com.wuhan.collecting.DTO.PatientDTO;
 import com.wuhan.collecting.mapper.InfoMapper;
@@ -43,11 +44,26 @@ public class InfoAppoint {
         return locs;
     }
 
-    public Count getCount(long locId, String date) {
-
+    public GetCountDTO getCount(long locId, String date) {
         Count count = infoMapper.getCount(locId, TimeUtil.Date2TimeStamp(date));
+        if (count == null) return null;
 
-        return count;
+        GetCountDTO getCountDTO = new GetCountDTO();
+
+        getCountDTO.setCountConfirm(count.getCountConfirm());
+        getCountDTO.setCountRecover(count.getCountRecover());
+        getCountDTO.setCountDead(count.getCountDead());
+        getCountDTO.setLocName(0, infoMapper.getLocName(locId));
+
+        for (int i = 1; i < 4; i++) {
+            long preId = infoMapper.getPreId(locId);
+            String locName = infoMapper.getLocName(preId);
+            locId = preId;
+            getCountDTO.setLocName(i, locName);
+            if (preId == 0) break;
+        }
+
+        return getCountDTO;
     }
 
     public List<PatientDTO> getPat(long locId, String date) {

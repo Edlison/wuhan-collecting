@@ -26,6 +26,13 @@ public class CountAppoint {
 
         if (countDTO.getCountRegionId() >= 0)
             count.setCountRegionId(countDTO.getCountRegionId());
+        else
+            return new SystemResult(302, "地区ID不正确");
+
+        long level = countMapper.checkCountByLocId(count.getCountRegionId());
+
+        if (level < 3)
+            return new SystemResult(303, "地区要精确到3级");
 
         if (!StringUtils.isEmpty(countDTO.getCountDate()))
             count.setCountDate(TimeUtil.Date2TimeStamp(countDTO.getCountDate()));
@@ -43,9 +50,13 @@ public class CountAppoint {
 
         if (!StringUtils.isEmpty(countDTO.getCountSourceUrl()))
             count.setCountSourceUrl(countDTO.getCountSourceUrl());
+        else
+            return new SystemResult(304, "源URL不能为空");
 
         if (countDTO.getCountUserId() >= 0)
             count.setCountUserId(countDTO.getCountUserId());
+        else
+            return new SystemResult(305, "填写用户信息不能为空");
 
         if (tempCount == null) {
 

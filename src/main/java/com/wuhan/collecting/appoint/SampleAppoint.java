@@ -26,9 +26,13 @@ public class SampleAppoint {
 
         if (sampleDTO.getSampleRegionId() >= 0)
             sample.setSampleRegionId(sampleDTO.getSampleRegionId());
+        else
+            return new SystemResult(402, "地区ID不正确");
 
         if (!StringUtils.isEmpty(sampleDTO.getSampleDate()))
             sample.setSampleDate(TimeUtil.Date2TimeStamp(sampleDTO.getSampleDate()));
+        else
+            return new SystemResult(403, "日期不能为空");
 
         if (sampleDTO.getSampleSex() >= 0)
             sample.setSampleSex(sampleDTO.getSampleSex());
@@ -41,9 +45,13 @@ public class SampleAppoint {
 
         if (!StringUtils.isEmpty(sampleDTO.getSampleSourceUrl()))
             sample.setSampleSourceUrl(sampleDTO.getSampleSourceUrl());
+        else
+            return new SystemResult(404, "源URL不能为空");
 
         if (sampleDTO.getSampleUserId() >= 0)
             sample.setSampleUserId(sampleDTO.getSampleUserId());
+        else
+            return new SystemResult(405, "填写用户信息不能为空");
 
         sample.setSampleCreateTime(System.currentTimeMillis() / 1000L);
         sample.setSampleModifiedTime(System.currentTimeMillis() / 1000L);

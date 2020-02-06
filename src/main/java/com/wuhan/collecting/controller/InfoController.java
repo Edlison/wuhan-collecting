@@ -10,6 +10,7 @@
 package com.wuhan.collecting.controller;
 
 import com.wuhan.collecting.DTO.CountDTO;
+import com.wuhan.collecting.DTO.GetCountDTO;
 import com.wuhan.collecting.DTO.LocationDTO;
 import com.wuhan.collecting.DTO.PatientDTO;
 import com.wuhan.collecting.model.Count;
@@ -38,12 +39,12 @@ public class InfoController {
 
     @PostMapping("/getCount")
     @ResponseBody
-    public Count getCount(@RequestParam(name = "locId") long locId,
-                          @RequestParam(name = "date") String date) {
+    public GetCountDTO getCount(@RequestParam(name = "locId") long locId,
+                                @RequestParam(name = "date") String date) {
 
-        Count count = infoService.getCount(locId, date);
+        GetCountDTO getCountDTO = infoService.getCount(locId, date);
 
-        return count;
+        return getCountDTO;
     }
 
     @PostMapping("/getPat")

@@ -17,6 +17,12 @@ public interface InfoMapper {
     @Select("Select id, level, code, name from region where pid = #{id}")
     List<LocationDAO> getPid(@Param("id") long id);
 
+    @Select("Select pid from region where id = #{locId}")
+    long getPreId(@Param("locId") long locId);
+
+    @Select("Select name from region where id = #{id}")
+    String getLocName(@Param("id") long id);
+
     @Select("Select id, count_confirm, count_recover, count_dead, count_source_url, count_user_id from count where count_region_id = #{locId} and count_date = #{date}")
     Count getCount(long locId, long date);
 
