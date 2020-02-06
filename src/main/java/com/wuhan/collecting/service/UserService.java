@@ -25,7 +25,7 @@ public class UserService {
 
         SystemResult res = userAppoint.checkUserLogin(phone, password);
 
-        if (res.getStatus() == 100) {
+        if (res.getStatus() == 0) {
             String token = UUID.randomUUID().toString();
             CookieUtil.setCookie(response, request, "token", token);
             userMapper.setToken(phone, token);

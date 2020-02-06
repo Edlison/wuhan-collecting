@@ -22,10 +22,10 @@ public class SampleService {
 
         for (SampleDTO sampleDTO : sampleDTOS) {
             SystemResult res = sampleAppoint.insert(sampleDTO);
-            if (res.getStatus() != 400) return res;
+            if (res.getStatus() != 0) return res;
         }
 
-        return new SystemResult(400, "sample插入成功");
+        return new SystemResult(0, "sample插入成功");
     }
 
     public SystemResult delete(String patId) {

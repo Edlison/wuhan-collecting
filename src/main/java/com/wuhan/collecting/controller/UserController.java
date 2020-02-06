@@ -38,7 +38,7 @@ public class UserController {
         json.put("status", res.getStatus());
         json.put("desc", res.getDesc());
 
-        if (res.getStatus() == 100) {
+        if (res.getStatus() == 0) {
 
             json.put("regionId", res.getData());
             json.put("phone", phone);
