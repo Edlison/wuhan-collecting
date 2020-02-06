@@ -47,26 +47,28 @@ public class SampleAppoint {
 
         if (!StringUtils.isEmpty(sampleDTO.getSampleConfirmTime()))
             sample.setSampleConfirmTime(TimeUtil.Date2TimeStamp(sampleDTO.getSampleConfirmTime()));
+        else
+            return new SystemResult(405, "确诊日期不能为空");
 
         if (!StringUtils.isEmpty(sampleDTO.getSampleSourceUrl()))
             sample.setSampleSourceUrl(sampleDTO.getSampleSourceUrl());
         else
-            return new SystemResult(405, "源URL不能为空");
+            return new SystemResult(406, "源URL不能为空");
 
         if (sampleDTO.getSampleUserId() >= 0)
             sample.setSampleUserId(sampleDTO.getSampleUserId());
         else
-            return new SystemResult(406, "填写用户信息不能为空");
+            return new SystemResult(407, "填写用户信息不能为空");
 
         sample.setSampleCreateTime(System.currentTimeMillis() / 1000L);
         sample.setSampleModifiedTime(System.currentTimeMillis() / 1000L);
         sampleMapper.insert(sample);
 
-        return new SystemResult(400, "sample插入成功");
+        return new SystemResult(0, "sample插入成功");
     }
 
     public SystemResult delete(String patId) {
         sampleMapper.delete(patId);
-        return new SystemResult(400, "sample删除成功");
+        return new SystemResult(0, "sample删除成功");
     }
 }

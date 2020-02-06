@@ -37,7 +37,10 @@ public class UserAppoint {
             return new SystemResult(105, "密码错误");
         }
 
-        return new SystemResult(100, "登陆成功", String.valueOf(user.getRegionId()));
+        user.setModifiedTime(System.currentTimeMillis() / 1000L);
+        userMapper.updateUser(user);
+
+        return new SystemResult(0, "登陆成功", String.valueOf(user.getRegionId()));
     }
 
     public SystemResult checkUserRegister(User user) {
@@ -65,6 +68,6 @@ public class UserAppoint {
 
         userMapper.insert(user);
 
-        return new SystemResult(200, "注册成功");
+        return new SystemResult(0, "注册成功");
     }
 }

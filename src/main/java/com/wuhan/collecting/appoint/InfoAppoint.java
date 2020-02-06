@@ -53,15 +53,17 @@ public class InfoAppoint {
         getCountDTO.setCountConfirm(count.getCountConfirm());
         getCountDTO.setCountRecover(count.getCountRecover());
         getCountDTO.setCountDead(count.getCountDead());
-        getCountDTO.setLocName(0, infoMapper.getLocName(locId));
+
+        StringBuilder locName = new StringBuilder(infoMapper.getLocName(locId));
 
         for (int i = 1; i < 4; i++) {
             long preId = infoMapper.getPreId(locId);
-            String locName = infoMapper.getLocName(preId);
+            locName.insert(0, infoMapper.getLocName(preId) + "-");
             locId = preId;
-            getCountDTO.setLocName(i, locName);
             if (preId == 0) break;
         }
+
+        getCountDTO.setLocName(locName.toString());
 
         return getCountDTO;
     }
@@ -74,16 +76,26 @@ public class InfoAppoint {
         List<PatientDTO> pats = new LinkedList<>();
 
         if (patientDAOS != null) {
+            StringBuilder locName = new StringBuilder(infoMapper.getLocName(locId));
+
+            for (int i = 1; i < 4; i++) {
+                long preId = infoMapper.getPreId(locId);
+                locName.insert(0, infoMapper.getLocName(preId) + "-");
+                locId = preId;
+                if (preId == 0) break;
+            }
+
             for (PatientDAO patientDAO : patientDAOS) {
                 if (patientDAO != null) {
                     PatientDTO pat = new PatientDTO();
+
                     pat.setId(patientDAO.getId());
                     pat.setSampleSex(patientDAO.getSampleSex());
                     pat.setSampleAge(patientDAO.getSampleAge());
                     pat.setSampleConfirmTime(TimeUtil.TimeStamp2Date(patientDAO.getSampleConfirmTime()));
-                    if (!StringUtils.isEmpty(patientDAO.getSampleSourceUrl())) {
-                        pat.setSampleSourceUrl(patientDAO.getSampleSourceUrl());
-                    }
+                    pat.setSampleSourceUrl(patientDAO.getSampleSourceUrl());
+                    pat.setLocName(locName.toString());
+
                     pats.add(pat);
                 }
             }

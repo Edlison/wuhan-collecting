@@ -14,6 +14,9 @@ public interface UserMapper {
     @Select("Select * from user where token = #{token}")
     User checkToken(@Param("token") String token);
 
+    @Update("Update user set modified_time = #{modifiedTime} where phone = #{phone}")
+    void updateUser(User user);
+
     @Insert("Insert into user (phone, password, region_id, status, create_time, modified_time) " +
             "values (#{phone}, #{password}, #{regionId}, #{status}, #{createTime}, #{modifiedTime})")
     void insert(User user);

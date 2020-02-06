@@ -36,27 +36,35 @@ public class CountAppoint {
 
         if (!StringUtils.isEmpty(countDTO.getCountDate()))
             count.setCountDate(TimeUtil.Date2TimeStamp(countDTO.getCountDate()));
+        else
+            return new SystemResult(304, "日期不能为空");
 
         Count tempCount = countMapper.checkCount(count.getCountRegionId(), count.getCountDate());
 
         if (countDTO.getCountConfirm() >= 0)
             count.setCountConfirm(countDTO.getCountConfirm());
+        else
+            return new SystemResult(305, "确诊人数有误");
 
         if (countDTO.getCountRecover() >= 0)
             count.setCountRecover(countDTO.getCountRecover());
+        else
+            return new SystemResult(306, "康复人数有误");
 
         if (countDTO.getCountDead() >= 0)
             count.setCountDead(countDTO.getCountDead());
+        else
+            return new SystemResult(307, "死亡人数有误");
 
         if (!StringUtils.isEmpty(countDTO.getCountSourceUrl()))
             count.setCountSourceUrl(countDTO.getCountSourceUrl());
         else
-            return new SystemResult(304, "源URL不能为空");
+            return new SystemResult(308, "源URL不能为空");
 
         if (countDTO.getCountUserId() >= 0)
             count.setCountUserId(countDTO.getCountUserId());
         else
-            return new SystemResult(305, "填写用户信息不能为空");
+            return new SystemResult(309, "填写用户信息不能为空");
 
         if (tempCount == null) {
 
@@ -65,14 +73,14 @@ public class CountAppoint {
 
             countMapper.insert(count);
 
-            return new SystemResult(300, "count插入成功");
+            return new SystemResult(0, "count插入成功");
         } else {
 
             count.setCountModifiedTime(System.currentTimeMillis() / 1000L);
 
             countMapper.update(count);
 
-            return new SystemResult(300, "count更新成功");
+            return new SystemResult(0, "count更新成功");
         }
     }
 }
