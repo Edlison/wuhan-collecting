@@ -22,10 +22,10 @@ public class SampleService {
 
         for (SampleDTO sampleDTO : sampleDTOS) {
             SystemResult res = sampleAppoint.insert(sampleDTO);
-            if (res.getStatus() != 400) return new SystemResult(402, "有表单为空");
+            if (res.getStatus() != 400) return res;
         }
 
-        return new SystemResult(400, "case插入成功");
+        return new SystemResult(400, "sample插入成功");
     }
 
     public SystemResult delete(String patId) {
