@@ -57,9 +57,9 @@ public class InfoAppoint {
 
         for (int i = 1; i < 4; i++) {
             long preId = infoMapper.getPreId(locId);
+            if (preId == 0) break;
             locName.insert(0, infoMapper.getLocName(preId) + "-");
             locId = preId;
-            if (preId == 0) break;
         }
 
         getCountDTO.setLocName(locName.toString());
@@ -79,9 +79,9 @@ public class InfoAppoint {
 
             for (int i = 1; i < 4; i++) {
                 long preId = infoMapper.getPreId(locId);
+                if (preId == 0) break;
                 locName.insert(0, infoMapper.getLocName(preId) + "-");
                 locId = preId;
-                if (preId == 0) break;
             }
 
             for (PatientDAO patientDAO : patientDAOS) {
