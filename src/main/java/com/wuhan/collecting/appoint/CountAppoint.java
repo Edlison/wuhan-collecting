@@ -32,7 +32,7 @@ public class CountAppoint {
         long level = countMapper.checkCountByLocId(count.getCountRegionId());
 
         if (level < 3)
-            return new SystemResult(303, "地区要精确到3级");
+            return new SystemResult(303, "地区要精确到3级以上");
 
         if (!StringUtils.isEmpty(countDTO.getCountDate()))
             count.setCountDate(TimeUtil.Date2TimeStamp(countDTO.getCountDate()));

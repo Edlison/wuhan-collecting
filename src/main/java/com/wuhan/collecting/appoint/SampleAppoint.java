@@ -32,7 +32,7 @@ public class SampleAppoint {
         long level = sampleMapper.checkSampleById(sample.getSampleRegionId());
 
         if (level < 3)
-            return new SystemResult(403, "地区要精确到3级");
+            return new SystemResult(403, "地区要精确到3级以上");
 
         if (!StringUtils.isEmpty(sampleDTO.getSampleDate()))
             sample.setSampleDate(TimeUtil.Date2TimeStamp(sampleDTO.getSampleDate()));

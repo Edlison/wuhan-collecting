@@ -9,11 +9,11 @@
 
 package com.wuhan.collecting.controller;
 
-import com.wuhan.collecting.DTO.CountDTO;
+import com.alibaba.fastjson.JSONObject;
 import com.wuhan.collecting.DTO.GetCountDTO;
 import com.wuhan.collecting.DTO.LocationDTO;
 import com.wuhan.collecting.DTO.PatientDTO;
-import com.wuhan.collecting.model.Count;
+import com.wuhan.collecting.result.SystemResult;
 import com.wuhan.collecting.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,31 +30,63 @@ public class InfoController {
 
     @PostMapping("/getNextLoc")
     @ResponseBody
-    public List<LocationDTO> getNextLoc(@RequestParam(name = "locId") long locId) {
+    public String getNextLoc(@RequestParam(name = "locId") long locId) {
 
         List<LocationDTO> locs = infoService.getNextLoc(locId);
 
-        return locs;
+        JSONObject res = new JSONObject();
+
+        if (locs == null) {
+            SystemResult result = new SystemResult(501, "查找地区ID有误");
+            res.put("SystemResult", result);
+            return res.toJSONString();
+        } else {
+            SystemResult result = new SystemResult(0, "查询成功");
+            res.put("SystemResult", result);
+            res.put("NextLoc", locs);
+            return res.toJSONString();
+        }
     }
 
     @PostMapping("/getCount")
     @ResponseBody
-    public GetCountDTO getCount(@RequestParam(name = "locId") long locId,
-                                @RequestParam(name = "date") String date) {
+    public String getCount(@RequestParam(name = "locId") long locId,
+                           @RequestParam(name = "date") String date) {
 
         GetCountDTO getCountDTO = infoService.getCount(locId, date);
 
-        return getCountDTO;
+        JSONObject res = new JSONObject();
+
+        if (getCountDTO == null) {
+            SystemResult result = new SystemResult(601, "无查询结果");
+            res.put("SystemResult", result);
+            return res.toJSONString();
+        } else {
+            SystemResult result = new SystemResult(0, "查询成功");
+            res.put("SystemResult", result);
+            res.put("Counts", getCountDTO);
+            return res.toJSONString();
+        }
     }
 
     @PostMapping("/getPat")
     @ResponseBody
-    public List<PatientDTO> getPat(@RequestParam(name = "locId") long locId,
-                                   @RequestParam(name = "date") String date) {
+    public String getPat(@RequestParam(name = "locId") long locId,
+                         @RequestParam(name = "date") String date) {
 
         List<PatientDTO> pats = infoService.getPat(locId, date);
 
-        return pats;
-    }
+        JSONObject res = new JSONObject();
 
+        if (pats == null) {
+            SystemResult result = new SystemResult(701, "无查询结果");
+            res.put("SystemResult", result);
+            return res.toJSONString();
+        } else {
+            SystemResult result = new SystemResult(0, "查询成功");
+            res.put("SystemResult", result);
+            res.put("Patients", pats);
+            return res.toJSONString();
+        }
+    }
 }

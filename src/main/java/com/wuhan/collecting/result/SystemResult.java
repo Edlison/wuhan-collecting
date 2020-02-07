@@ -6,6 +6,9 @@ public class   SystemResult {
      * 200 register
      * 300 count
      * 400 sample
+     * 500 getNextLoc
+     * 600 getCount
+     * 700 getPat
      */
     private Integer status;
     private String desc;
@@ -14,6 +17,7 @@ public class   SystemResult {
     public SystemResult(Integer status, String desc) {
         this.status = status;
         this.desc = desc;
+        this.data = null;
     }
 
     public SystemResult(Integer status, String desc, String data) {
