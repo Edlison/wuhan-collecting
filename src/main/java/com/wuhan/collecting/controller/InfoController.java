@@ -34,18 +34,20 @@ public class InfoController {
 
         List<LocationDTO> locs = infoService.getNextLoc(locId);
 
-        JSONObject res = new JSONObject();
+//        JSONObject res = new JSONObject();
 
-        if (locs == null) {
-            SystemResult result = new SystemResult(501, "查找地区ID有误");
-            res.put("SystemResult", result);
-            return res.toJSONString();
-        } else {
-            SystemResult result = new SystemResult(0, "查询成功");
-            res.put("SystemResult", result);
-            res.put("NextLoc", locs);
-            return res.toJSONString();
-        }
+//        if (locs == null) {
+//            SystemResult result = new SystemResult(501, "查找地区ID有误");
+//            res.put("SystemResult", result);
+//            return res.toJSONString();
+//        } else {
+//            SystemResult result = new SystemResult(0, "查询成功");
+//            res.put("SystemResult", result);
+//            res.put("NextLoc", locs);
+//            return res.toJSONString();
+//        }
+
+        return JSONObject.toJSONString(locs);
     }
 
     @PostMapping("/getCount")
@@ -59,11 +61,13 @@ public class InfoController {
 
         if (getCountDTO == null) {
             SystemResult result = new SystemResult(601, "无查询结果");
-            res.put("SystemResult", result);
+            res.put("status", result.getStatus());
+            res.put("desc", result.getDesc());
             return res.toJSONString();
         } else {
             SystemResult result = new SystemResult(0, "查询成功");
-            res.put("SystemResult", result);
+            res.put("status", result.getStatus());
+            res.put("desc", result.getDesc());
             res.put("Counts", getCountDTO);
             return res.toJSONString();
         }
@@ -80,11 +84,13 @@ public class InfoController {
 
         if (pats == null) {
             SystemResult result = new SystemResult(701, "无查询结果");
-            res.put("SystemResult", result);
+            res.put("status", result.getStatus());
+            res.put("desc", result.getDesc());
             return res.toJSONString();
         } else {
             SystemResult result = new SystemResult(0, "查询成功");
-            res.put("SystemResult", result);
+            res.put("status", result.getStatus());
+            res.put("desc", result.getDesc());
             res.put("Patients", pats);
             return res.toJSONString();
         }
