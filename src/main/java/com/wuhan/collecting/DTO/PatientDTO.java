@@ -8,6 +8,7 @@ public class PatientDTO {
     private long sampleSex;
     private long sampleAge;
     private String sampleConfirmTime;
+    private String sampleSourceText;
     private String sampleSourceUrl;
     private String locName;
 }

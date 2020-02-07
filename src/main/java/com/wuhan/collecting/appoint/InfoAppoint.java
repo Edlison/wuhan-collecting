@@ -92,6 +92,7 @@ public class InfoAppoint {
                     pat.setSampleSex(patientDAO.getSampleSex());
                     pat.setSampleAge(patientDAO.getSampleAge());
                     pat.setSampleConfirmTime(TimeUtil.TimeStamp2Date(patientDAO.getSampleConfirmTime()));
+                    pat.setSampleSourceText(patientDAO.getSampleSourceText());
                     pat.setSampleSourceUrl(patientDAO.getSampleSourceUrl());
                     pat.setLocName(locName.toString());
 
