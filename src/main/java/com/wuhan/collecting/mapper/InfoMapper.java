@@ -28,4 +28,7 @@ public interface InfoMapper {
 
     @Select("Select id, sample_sex, sample_age, sample_confirm_time, sample_source_url from sample where sample_region_id = #{locId} and sample_date = #{date}")
     List<PatientDAO> getPat(long locId, long date);
+
+    @Select("Select level from region where id = #{locId}")
+    long checkLevelById(@Param("locId") long locId);
 }
