@@ -19,6 +19,7 @@ public class CountDTO {
     private long countConfirm;
     private long countRecover;
     private long countDead;
+    private String countSourceText;
     private String countSourceUrl;
     private long countUserId;
     private long countCreateTime;

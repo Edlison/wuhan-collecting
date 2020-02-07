@@ -56,15 +56,20 @@ public class CountAppoint {
         else
             return new SystemResult(307, "死亡人数有误");
 
+        if (!StringUtils.isEmpty(countDTO.getCountSourceText()))
+            count.setCountSourceText(countDTO.getCountSourceText());
+        else
+            return new SystemResult(308, "源Text不能为空");
+
         if (!StringUtils.isEmpty(countDTO.getCountSourceUrl()))
             count.setCountSourceUrl(countDTO.getCountSourceUrl());
         else
-            return new SystemResult(308, "源URL不能为空");
+            return new SystemResult(309, "源URL不能为空");
 
         if (countDTO.getCountUserId() >= 0)
             count.setCountUserId(countDTO.getCountUserId());
         else
-            return new SystemResult(309, "填写用户信息不能为空");
+            return new SystemResult(310, "填写用户信息不能为空");
 
         if (tempCount == null) {
 

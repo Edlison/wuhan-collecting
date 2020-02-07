@@ -19,6 +19,7 @@ public class SampleDTO {
     private long sampleSex;
     private long sampleAge;
     private String sampleConfirmTime;
+    private String sampleSourceText;
     private String sampleSourceUrl;
     private long sampleUserId;
     private long sampleCreateTime;

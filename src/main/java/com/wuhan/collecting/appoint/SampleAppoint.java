@@ -50,15 +50,20 @@ public class SampleAppoint {
         else
             return new SystemResult(405, "确诊日期不能为空");
 
+        if (!StringUtils.isEmpty(sampleDTO.getSampleSourceText()))
+            sample.setSampleSourceText(sampleDTO.getSampleSourceText());
+        else
+            return new SystemResult(406, "源Text不能为空");
+
         if (!StringUtils.isEmpty(sampleDTO.getSampleSourceUrl()))
             sample.setSampleSourceUrl(sampleDTO.getSampleSourceUrl());
         else
-            return new SystemResult(406, "源URL不能为空");
+            return new SystemResult(407, "源URL不能为空");
 
         if (sampleDTO.getSampleUserId() >= 0)
             sample.setSampleUserId(sampleDTO.getSampleUserId());
         else
-            return new SystemResult(407, "填写用户信息不能为空");
+            return new SystemResult(408, "填写用户信息不能为空");
 
         sample.setSampleCreateTime(System.currentTimeMillis() / 1000L);
         sample.setSampleModifiedTime(System.currentTimeMillis() / 1000L);

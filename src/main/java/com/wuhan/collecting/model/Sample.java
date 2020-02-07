@@ -10,6 +10,7 @@ public class Sample {
     private long sampleSex;
     private long sampleAge;
     private long sampleConfirmTime;
+    private String sampleSourceText;
     private String sampleSourceUrl;
     private long sampleUserId;
     private long sampleCreateTime;
