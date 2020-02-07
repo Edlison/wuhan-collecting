@@ -17,4 +17,6 @@ public class GetCountDTO {
     private long countRecover;
     private long countDead;
     private String locName;
+    private String countSourceText;
+    private String countSourceUrl;
 }

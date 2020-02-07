@@ -52,6 +52,8 @@ public class InfoAppoint {
         getCountDTO.setCountConfirm(count.getCountConfirm());
         getCountDTO.setCountRecover(count.getCountRecover());
         getCountDTO.setCountDead(count.getCountDead());
+        getCountDTO.setCountSourceText(count.getCountSourceText());
+        getCountDTO.setCountSourceUrl(count.getCountSourceUrl());
 
         StringBuilder locName = new StringBuilder(infoMapper.getLocName(locId));
 

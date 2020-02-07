@@ -23,7 +23,7 @@ public interface InfoMapper {
     @Select("Select name from region where id = #{id}")
     String getLocName(@Param("id") long id);
 
-    @Select("Select id, count_confirm, count_recover, count_dead, count_source_url, count_user_id from count where count_region_id = #{locId} and count_date = #{date}")
+    @Select("Select count_confirm, count_recover, count_dead, count_source_text, count_source_url from count where count_region_id = #{locId} and count_date = #{date}")
     Count getCount(long locId, long date);
 
     @Select("Select id, sample_sex, sample_age, sample_confirm_time, sample_source_text, sample_source_url from sample where sample_region_id = #{locId} and sample_date = #{date}")
