@@ -39,8 +39,10 @@ public class SampleAppoint {
         else
             return new SystemResult(404, "日期不能为空");
 
-        if (sampleDTO.getSampleSex() >= 0)
+        if (sampleDTO.getSampleSex() == 0 || sampleDTO.getSampleSex() == 1)
             sample.setSampleSex(sampleDTO.getSampleSex());
+        else
+            return new SystemResult(405, "性别信息错误");
 
         if (sampleDTO.getSampleAge() >= 0)
             sample.setSampleAge(sampleDTO.getSampleAge());
@@ -48,22 +50,22 @@ public class SampleAppoint {
         if (!StringUtils.isEmpty(sampleDTO.getSampleConfirmTime()))
             sample.setSampleConfirmTime(TimeUtil.Date2TimeStamp(sampleDTO.getSampleConfirmTime()));
         else
-            return new SystemResult(405, "确诊日期不能为空");
+            return new SystemResult(406, "确诊日期不能为空");
 
         if (!StringUtils.isEmpty(sampleDTO.getSampleSourceText()))
             sample.setSampleSourceText(sampleDTO.getSampleSourceText());
         else
-            return new SystemResult(406, "源Text不能为空");
+            return new SystemResult(407, "源Text不能为空");
 
         if (!StringUtils.isEmpty(sampleDTO.getSampleSourceUrl()))
             sample.setSampleSourceUrl(sampleDTO.getSampleSourceUrl());
         else
-            return new SystemResult(407, "源URL不能为空");
+            return new SystemResult(408, "源URL不能为空");
 
         if (sampleDTO.getSampleUserId() >= 0)
             sample.setSampleUserId(sampleDTO.getSampleUserId());
         else
-            return new SystemResult(408, "填写用户信息不能为空");
+            return new SystemResult(409, "填写用户信息不能为空");
 
         sample.setSampleCreateTime(System.currentTimeMillis() / 1000L);
         sample.setSampleModifiedTime(System.currentTimeMillis() / 1000L);
