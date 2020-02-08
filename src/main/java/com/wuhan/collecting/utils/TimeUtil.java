@@ -1,7 +1,5 @@
 package com.wuhan.collecting.utils;
 
-import org.springframework.util.StringUtils;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
