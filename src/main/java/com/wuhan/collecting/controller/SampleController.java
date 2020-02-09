@@ -25,7 +25,7 @@ public class SampleController {
     @Autowired
     SampleService sampleService;
 
-    @RequestMapping(value = "/insert" , method = RequestMethod.POST)
+    @PostMapping("/insert")
     @ResponseBody
     public SystemResult insert(@RequestBody List<SampleDTO> sampleDTOS) {
 
@@ -34,11 +34,20 @@ public class SampleController {
         return res;
     }
 
-    @RequestMapping(value = "/delete" , method = RequestMethod.POST)
+    @PostMapping("/delete")
     @ResponseBody
-    public SystemResult insert(@RequestParam(name = "patId") String patId) {
+    public SystemResult delete(@RequestParam(name = "patId") String patId) {
 
         SystemResult res = sampleService.delete(patId);
+
+        return res;
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public SystemResult update(SampleDTO sampleDTO) {
+
+        SystemResult res = sampleService.update(sampleDTO);
 
         return res;
     }

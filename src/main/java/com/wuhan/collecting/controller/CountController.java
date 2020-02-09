@@ -33,4 +33,13 @@ public class CountController {
 
         return res;
     }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public SystemResult update(CountDTO countDTO) {
+
+        SystemResult res = countService.update(countDTO);
+
+        return res;
+    }
 }

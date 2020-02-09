@@ -18,4 +18,11 @@ public class CountService {
 
         return res;
     }
+
+    public SystemResult update(CountDTO countDTO) {
+
+        SystemResult res = countAppoint.update(countDTO);
+
+        return res;
+    }
 }

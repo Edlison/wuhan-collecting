@@ -34,4 +34,11 @@ public class SampleService {
 
         return res;
     }
+
+    public SystemResult update(SampleDTO sampleDTO) {
+
+        SystemResult res = sampleAppoint.update(sampleDTO);
+
+        return res;
+    }
 }
