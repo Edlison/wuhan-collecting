@@ -25,4 +25,10 @@ public interface CountMapper {
     @Update("Update count set count_region_id = #{countRegionId}, count_date = #{countDate}, count_confirm = #{countConfirm}, count_recover = #{countRecover}, count_dead = #{countDead}, count_source_text = #{countSourceText}, count_source_url = #{countSourceUrl}, count_user_id = #{countUserId}, count_modified_time = #{countModifiedTime} " +
             "where id = #{id} and count_user_id = #{countUserId}")
     void updateById(Count count);
+
+    @Delete("Delete from count where id = #{countId}")
+    void delete(@Param("countId") long countId);
+
+    @Select("Select * from count where id = #{countId}")
+    Count checkId(@Param("countId") long countId);
 }

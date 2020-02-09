@@ -49,6 +49,7 @@ public class InfoAppoint {
 
         GetCountDTO getCountDTO = new GetCountDTO();
 
+        getCountDTO.setId(count.getId());
         getCountDTO.setCountConfirm(count.getCountConfirm());
         getCountDTO.setCountRecover(count.getCountRecover());
         getCountDTO.setCountDead(count.getCountDead());

@@ -76,11 +76,6 @@ public class SampleAppoint {
         return new SystemResult(0, "sample插入成功");
     }
 
-    public SystemResult delete(String patId) {
-        sampleMapper.delete(patId);
-        return new SystemResult(0, "sample删除成功");
-    }
-
     public SystemResult update(SampleDTO sampleDTO) {
         //Data Trans SampleDTO to Sample
         Sample sample = new Sample();
@@ -140,5 +135,17 @@ public class SampleAppoint {
         sampleMapper.update(sample);
 
         return new SystemResult(0, "sample更新成功");
+    }
+
+    public SystemResult delete(long patId) {
+
+        Sample sample = sampleMapper.checkId(patId);
+
+        if (sample == null) {
+            return new SystemResult(421, "未找到该sample记录");
+        } else {
+            sampleMapper.delete(patId);
+            return new SystemResult(0, "sample删除成功");
+        }
     }
 }

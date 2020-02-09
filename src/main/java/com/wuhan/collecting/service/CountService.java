@@ -25,4 +25,9 @@ public class CountService {
 
         return res;
     }
+
+    public SystemResult delete(long countId) {
+        SystemResult res = countAppoint.delete(countId);
+        return res;
+    }
 }

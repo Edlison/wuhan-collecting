@@ -13,6 +13,7 @@ import lombok.Data;
 
 @Data
 public class GetCountDTO {
+    private long id;
     private long countConfirm;
     private long countRecover;
     private long countDead;

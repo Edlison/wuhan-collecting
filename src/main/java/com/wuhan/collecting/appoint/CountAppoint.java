@@ -149,4 +149,16 @@ public class CountAppoint {
 
         return new SystemResult(0, "count更新成功");
     }
+
+    public SystemResult delete(long countId) {
+
+        Count count = countMapper.checkId(countId);
+
+        if (count == null) {
+            return new SystemResult(321, "未找到该count记录");
+        } else {
+            countMapper.delete(countId);
+            return new SystemResult(0, "count删除成功");
+        }
+    }
 }

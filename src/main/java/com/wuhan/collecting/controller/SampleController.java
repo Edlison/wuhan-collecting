@@ -34,20 +34,20 @@ public class SampleController {
         return res;
     }
 
-    @PostMapping("/delete")
-    @ResponseBody
-    public SystemResult delete(@RequestParam(name = "patId") String patId) {
-
-        SystemResult res = sampleService.delete(patId);
-
-        return res;
-    }
-
     @PostMapping("/update")
     @ResponseBody
     public SystemResult update(SampleDTO sampleDTO) {
 
         SystemResult res = sampleService.update(sampleDTO);
+
+        return res;
+    }
+
+    @PostMapping("/delete")
+    @ResponseBody
+    public SystemResult delete(@RequestParam(name = "patId") long patId) {
+
+        SystemResult res = sampleService.delete(patId);
 
         return res;
     }

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -39,6 +40,15 @@ public class CountController {
     public SystemResult update(CountDTO countDTO) {
 
         SystemResult res = countService.update(countDTO);
+
+        return res;
+    }
+
+    @PostMapping("/delete")
+    @ResponseBody
+    public SystemResult delete(@RequestParam(name = "countId") long countId) {
+
+        SystemResult res = countService.delete(countId);
 
         return res;
     }

@@ -28,16 +28,16 @@ public class SampleService {
         return new SystemResult(0, "sample插入成功");
     }
 
-    public SystemResult delete(String patId) {
+    public SystemResult update(SampleDTO sampleDTO) {
 
-        SystemResult res = sampleAppoint.delete(patId);
+        SystemResult res = sampleAppoint.update(sampleDTO);
 
         return res;
     }
 
-    public SystemResult update(SampleDTO sampleDTO) {
+    public SystemResult delete(long patId) {
 
-        SystemResult res = sampleAppoint.update(sampleDTO);
+        SystemResult res = sampleAppoint.delete(patId);
 
         return res;
     }
