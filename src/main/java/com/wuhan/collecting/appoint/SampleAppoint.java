@@ -3,11 +3,14 @@ package com.wuhan.collecting.appoint;
 import com.wuhan.collecting.DTO.SampleDTO;
 import com.wuhan.collecting.mapper.SampleMapper;
 import com.wuhan.collecting.model.Sample;
+import com.wuhan.collecting.model.User;
 import com.wuhan.collecting.result.SystemResult;
 import com.wuhan.collecting.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Component
 public class SampleAppoint {
@@ -15,10 +18,18 @@ public class SampleAppoint {
     @Autowired
     SampleMapper sampleMapper;
 
-    public SystemResult insert(SampleDTO sampleDTO) {
+    @Autowired
+    UserAppoint userAppoint;
+
+    public SystemResult insert(SampleDTO sampleDTO, HttpServletRequest request) {
 
         if (sampleDTO == null) {
             return new SystemResult(401, "请填写表单");
+        }
+
+        User user = userAppoint.checkUserByToken(request);
+        if (user == null) {
+            return new SystemResult(411, "获取token失败");
         }
 
         //Data Trans SampleDTO to Sample
@@ -64,10 +75,10 @@ public class SampleAppoint {
         else
             return new SystemResult(409, "源URL不能为空");
 
-        if (sampleDTO.getSampleUserId() >= 0)
-            sample.setSampleUserId(sampleDTO.getSampleUserId());
+        if (user.getId() >= 0)
+            sample.setSampleUserId(user.getId());
         else
-            return new SystemResult(410, "填写用户信息不能为空");
+            return new SystemResult(410, "用户信息有误");
 
         sample.setSampleCreateTime(System.currentTimeMillis() / 1000L);
         sample.setSampleModifiedTime(System.currentTimeMillis() / 1000L);
@@ -76,7 +87,13 @@ public class SampleAppoint {
         return new SystemResult(0, "sample插入成功");
     }
 
-    public SystemResult update(SampleDTO sampleDTO) {
+    public SystemResult update(SampleDTO sampleDTO, HttpServletRequest request) {
+
+        User user = userAppoint.checkUserByToken(request);
+        if (user == null) {
+            return new SystemResult(411, "获取token失败");
+        }
+
         //Data Trans SampleDTO to Sample
         Sample sample = new Sample();
 
@@ -125,10 +142,10 @@ public class SampleAppoint {
         else
             return new SystemResult(409, "源URL不能为空");
 
-        if (sampleDTO.getSampleUserId() >= 0)
-            sample.setSampleUserId(sampleDTO.getSampleUserId());
+        if (user.getId() >= 0)
+            sample.setSampleUserId(user.getId());
         else
-            return new SystemResult(410, "填写用户信息不能为空");
+            return new SystemResult(410, "用户信息有误");
 
         sample.setSampleModifiedTime(System.currentTimeMillis() / 1000L);
 

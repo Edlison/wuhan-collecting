@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 @Component
 public class UserAppoint {
 
@@ -69,5 +72,20 @@ public class UserAppoint {
         userMapper.insert(user);
 
         return new SystemResult(0, "注册成功");
+    }
+
+    public User checkUserByToken(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+
+        if (cookies != null && cookies.length != 0) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("token")) {
+                    String token = cookie.getValue();
+                    User user = userMapper.checkToken(token);
+                    if (user != null) return user;
+                }
+            }
+        }
+        return null;
     }
 }

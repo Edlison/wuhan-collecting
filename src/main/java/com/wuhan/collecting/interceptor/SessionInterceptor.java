@@ -32,7 +32,7 @@ public class SessionInterceptor implements HandlerInterceptor {
         }
 
         PrintWriter printWriter = response.getWriter();
-        printWriter.write("{\"status\":0, \"desc\":\"not login!\", \"data\":null}");
+        printWriter.write("{\"status\":1, \"desc\":\"not login!\", \"data\":null}");
         return false;
     }
 }

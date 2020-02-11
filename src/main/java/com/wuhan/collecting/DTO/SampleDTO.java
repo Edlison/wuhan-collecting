@@ -21,7 +21,6 @@ public class SampleDTO {
     private String sampleConfirmTime;
     private String sampleSourceText;
     private String sampleSourceUrl;
-    private long sampleUserId;
     private long sampleCreateTime;
     private long sampleModifiedTime;
 }

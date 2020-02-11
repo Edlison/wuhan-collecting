@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/api/count")
 public class CountController {
@@ -28,18 +30,18 @@ public class CountController {
 
     @PostMapping("/insert")
     @ResponseBody
-    public SystemResult insert(CountDTO countDTO) {
+    public SystemResult insert(CountDTO countDTO, HttpServletRequest request) {
 
-        SystemResult res = countService.insert(countDTO);
+        SystemResult res = countService.insert(countDTO, request);
 
         return res;
     }
 
     @PostMapping("/update")
     @ResponseBody
-    public SystemResult update(CountDTO countDTO) {
+    public SystemResult update(CountDTO countDTO, HttpServletRequest request) {
 
-        SystemResult res = countService.update(countDTO);
+        SystemResult res = countService.update(countDTO, request);
 
         return res;
     }

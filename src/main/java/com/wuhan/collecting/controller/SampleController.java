@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -27,18 +28,18 @@ public class SampleController {
 
     @PostMapping("/insert")
     @ResponseBody
-    public SystemResult insert(@RequestBody List<SampleDTO> sampleDTOS) {
+    public SystemResult insert(@RequestBody List<SampleDTO> sampleDTOS, HttpServletRequest request) {
 
-        SystemResult res = sampleService.insert(sampleDTOS);
+        SystemResult res = sampleService.insert(sampleDTOS, request);
 
         return res;
     }
 
     @PostMapping("/update")
     @ResponseBody
-    public SystemResult update(SampleDTO sampleDTO) {
+    public SystemResult update(SampleDTO sampleDTO, HttpServletRequest request) {
 
-        SystemResult res = sampleService.update(sampleDTO);
+        SystemResult res = sampleService.update(sampleDTO, request);
 
         return res;
     }

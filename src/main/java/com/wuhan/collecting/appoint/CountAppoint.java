@@ -3,11 +3,14 @@ package com.wuhan.collecting.appoint;
 import com.wuhan.collecting.DTO.CountDTO;
 import com.wuhan.collecting.mapper.CountMapper;
 import com.wuhan.collecting.model.Count;
+import com.wuhan.collecting.model.User;
 import com.wuhan.collecting.result.SystemResult;
 import com.wuhan.collecting.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Component
 public class CountAppoint {
@@ -15,10 +18,18 @@ public class CountAppoint {
     @Autowired
     CountMapper countMapper;
 
-    public SystemResult insert(CountDTO countDTO) {
+    @Autowired
+    UserAppoint userAppoint;
+
+    public SystemResult insert(CountDTO countDTO, HttpServletRequest request) {
 
         if (countDTO == null) {
             return new SystemResult(301, "请填写表单");
+        }
+
+        User user = userAppoint.checkUserByToken(request);
+        if (user == null) {
+            return new SystemResult(311, "获取token失败");
         }
 
         //Data Trans CountDTO to Count
@@ -66,10 +77,10 @@ public class CountAppoint {
         else
             return new SystemResult(309, "源URL不能为空");
 
-        if (countDTO.getCountUserId() >= 0)
-            count.setCountUserId(countDTO.getCountUserId());
+        if (user.getId() >= 0)
+            count.setCountUserId(user.getId());
         else
-            return new SystemResult(310, "填写用户信息不能为空");
+            return new SystemResult(310, "用户信息出错");
 
         if (tempCount == null) {
 
@@ -89,7 +100,13 @@ public class CountAppoint {
         }
     }
 
-    public SystemResult update(CountDTO countDTO) {
+    public SystemResult update(CountDTO countDTO, HttpServletRequest request) {
+
+        User user = userAppoint.checkUserByToken(request);
+        if (user == null) {
+            return new SystemResult(311, "获取token失败");
+        }
+
         //Data Trans CountDTO to Count
         Count count = new Count();
 
@@ -138,10 +155,10 @@ public class CountAppoint {
         else
             return new SystemResult(309, "源URL不能为空");
 
-        if (countDTO.getCountUserId() >= 0)
-            count.setCountUserId(countDTO.getCountUserId());
+        if (user.getId() >= 0)
+            count.setCountUserId(user.getId());
         else
-            return new SystemResult(310, "填写用户信息不能为空");
+            return new SystemResult(310, "用户信息出错");
 
         count.setCountModifiedTime(System.currentTimeMillis() / 1000L);
 

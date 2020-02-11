@@ -21,7 +21,6 @@ public class CountDTO {
     private long countDead;
     private String countSourceText;
     private String countSourceUrl;
-    private long countUserId;
     private long countCreateTime;
     private long countModifiedTime;
 }
