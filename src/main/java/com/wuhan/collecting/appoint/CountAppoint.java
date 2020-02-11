@@ -162,7 +162,11 @@ public class CountAppoint {
 
         count.setCountModifiedTime(System.currentTimeMillis() / 1000L);
 
-        countMapper.updateById(count);
+        int res = countMapper.updateById(count);
+
+        if (res == 0) {
+            return new SystemResult(312, "count更新失败");
+        }
 
         return new SystemResult(0, "count更新成功");
     }

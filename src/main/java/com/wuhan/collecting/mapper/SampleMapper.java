@@ -13,11 +13,11 @@ public interface SampleMapper {
     void insert(Sample sample);
 
     @Select("Select level from region where id = #{locId}")
-    long checkSampleById(@Param("locId") long locId);
+    long checkSampleByLocId(@Param("locId") long locId);
 
     @Update("Update sample set sample_region_id = #{sampleRegionId}, sample_date = #{sampleDate}, sample_sex = #{sampleSex}, sample_age = #{sampleAge}, sample_confirm_time = #{sampleConfirmTime}, sample_source_text = #{sampleSourceText}, sample_source_url = #{sampleSourceUrl}, sample_user_id = #{sampleUserId}, sample_modified_time = #{sampleModifiedTime} " +
             "where id = #{id} and sample_user_id = #{sampleUserId}")
-    void update(Sample sample);
+    int updateById(Sample sample);
 
     @Delete("Delete from sample where id = #{patId}")
     void delete(@Param("patId") long patId);

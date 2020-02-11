@@ -40,7 +40,7 @@ public class SampleAppoint {
         else
             return new SystemResult(402, "地区ID不正确");
 
-        long level = sampleMapper.checkSampleById(sample.getSampleRegionId());
+        long level = sampleMapper.checkSampleByLocId(sample.getSampleRegionId());
 
         if (level < 3)
             return new SystemResult(403, "地区要精确到3级以上");
@@ -107,7 +107,7 @@ public class SampleAppoint {
         else
             return new SystemResult(402, "地区ID不正确");
 
-        long level = sampleMapper.checkSampleById(sample.getSampleRegionId());
+        long level = sampleMapper.checkSampleByLocId(sample.getSampleRegionId());
 
         if (level < 3)
             return new SystemResult(403, "地区要精确到3级以上");
@@ -149,7 +149,11 @@ public class SampleAppoint {
 
         sample.setSampleModifiedTime(System.currentTimeMillis() / 1000L);
 
-        sampleMapper.update(sample);
+        int res = sampleMapper.updateById(sample);
+
+        if (res == 0) {
+            return new SystemResult(412, "sample更新失败");
+        }
 
         return new SystemResult(0, "sample更新成功");
     }
