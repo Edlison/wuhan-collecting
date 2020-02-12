@@ -61,7 +61,7 @@ public class SampleAppoint {
             return new SystemResult(406, "年龄信息错误");
 
         if (!StringUtils.isEmpty(sampleDTO.getSampleConfirmTime()))
-            sample.setSampleConfirmTime(TimeUtil.Date2TimeStamp(sampleDTO.getSampleConfirmTime()));
+            sample.setSampleConfirmTime(sampleDTO.getSampleConfirmTime());
         else
             return new SystemResult(407, "确诊日期不能为空");
 
@@ -128,7 +128,7 @@ public class SampleAppoint {
             return new SystemResult(406, "年龄信息错误");
 
         if (!StringUtils.isEmpty(sampleDTO.getSampleConfirmTime()))
-            sample.setSampleConfirmTime(TimeUtil.Date2TimeStamp(sampleDTO.getSampleConfirmTime()));
+            sample.setSampleConfirmTime(sampleDTO.getSampleConfirmTime());
         else
             return new SystemResult(407, "确诊日期不能为空");
 

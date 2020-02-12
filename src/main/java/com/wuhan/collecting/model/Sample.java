@@ -9,7 +9,7 @@ public class Sample {
     private long sampleDate;
     private long sampleSex;
     private long sampleAge;
-    private long sampleConfirmTime;
+    private String sampleConfirmTime;
     private String sampleSourceText;
     private String sampleSourceUrl;
     private long sampleUserId;

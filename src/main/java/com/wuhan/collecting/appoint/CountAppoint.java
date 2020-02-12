@@ -5,7 +5,6 @@ import com.wuhan.collecting.mapper.CountMapper;
 import com.wuhan.collecting.model.Count;
 import com.wuhan.collecting.model.User;
 import com.wuhan.collecting.result.SystemResult;
-import com.wuhan.collecting.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -46,7 +45,7 @@ public class CountAppoint {
             return new SystemResult(303, "地区要精确到3级以上");
 
         if (!StringUtils.isEmpty(countDTO.getCountDate()))
-            count.setCountDate(TimeUtil.Date2TimeStamp(countDTO.getCountDate()));
+            count.setCountDate(countDTO.getCountDate());
         else
             return new SystemResult(304, "日期不能为空");
 
@@ -126,7 +125,7 @@ public class CountAppoint {
             return new SystemResult(303, "地区要精确到3级以上");
 
         if (!StringUtils.isEmpty(countDTO.getCountDate()))
-            count.setCountDate(TimeUtil.Date2TimeStamp(countDTO.getCountDate()));
+            count.setCountDate(countDTO.getCountDate());
         else
             return new SystemResult(304, "日期不能为空");
 

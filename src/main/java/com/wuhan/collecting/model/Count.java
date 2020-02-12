@@ -6,7 +6,7 @@ import lombok.Data;
 public class Count {
     private long id;
     private long countRegionId;
-    private long countDate;
+    private String countDate;
     private long countConfirm;
     private long countRecover;
     private long countDead;

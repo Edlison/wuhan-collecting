@@ -16,7 +16,7 @@ public interface CountMapper {
     long checkCountByLocId(@Param("locId") long locId);
 
     @Select("Select * from count where count_region_id = #{locId} and count_date = #{date}")
-    Count checkCount(long locId, long date);
+    Count checkCount(long locId, String date);
 
     @Update("Update count set count_confirm = #{countConfirm}, count_recover = #{countRecover}, count_dead = #{countDead}, count_source_text = #{countSourceText}, count_source_url = #{countSourceUrl}, count_user_id = #{countUserId}, count_modified_time = #{countModifiedTime} " +
             "where count_region_id = #{countRegionId} and count_date = #{countDate}")
@@ -33,5 +33,5 @@ public interface CountMapper {
     Count checkId(@Param("countId") long countId);
 
     @Delete("Delete from sample where sample_region_id = #{locId} and sample_confirm_time = #{date}")
-    int deleteByCount(long locId, long date);
+    int deleteByCount(long locId, String date);
 }
