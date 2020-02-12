@@ -171,15 +171,32 @@ public class CountAppoint {
         return new SystemResult(0, "count更新成功");
     }
 
-    public SystemResult delete(long countId) {
+    public SystemResult delete(long countId, HttpServletRequest request) {
+        User user = userAppoint.checkUserByToken(request);
+        if (user == null) {
+            return new SystemResult(311, "获取token失败");
+        }
 
         Count count = countMapper.checkId(countId);
-
         if (count == null) {
-            return new SystemResult(321, "未找到该count记录");
-        } else {
-            countMapper.delete(countId);
-            return new SystemResult(0, "count删除成功");
+            return new SystemResult(321, "没有count记录");
         }
+
+        if (count.getCountUserId() != user.getId()) {
+            return new SystemResult(322, "你没有权限操作");
+        }
+
+        int countRes = countMapper.delete(countId);
+        int sampleRes = countMapper.deleteByCount(count.getCountRegionId(), count.getCountDate());
+
+        if (countRes == 0) {
+            return new SystemResult(323, "count记录删除失败");
+        }
+
+        if (sampleRes == 0) {
+            return new SystemResult(0, "count记录删除成功sample无记录");
+        }
+
+        return new SystemResult(0, "count删除成功sample删除成功");
     }
 }

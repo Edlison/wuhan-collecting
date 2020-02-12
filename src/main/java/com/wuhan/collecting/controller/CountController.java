@@ -48,9 +48,9 @@ public class CountController {
 
     @PostMapping("/delete")
     @ResponseBody
-    public SystemResult delete(@RequestParam(name = "countId") long countId) {
+    public SystemResult delete(@RequestParam(name = "countId") long countId, HttpServletRequest request) {
 
-        SystemResult res = countService.delete(countId);
+        SystemResult res = countService.delete(countId, request);
 
         return res;
     }

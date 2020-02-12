@@ -27,8 +27,11 @@ public interface CountMapper {
     int updateById(Count count);
 
     @Delete("Delete from count where id = #{countId}")
-    void delete(@Param("countId") long countId);
+    int delete(@Param("countId") long countId);
 
     @Select("Select * from count where id = #{countId}")
     Count checkId(@Param("countId") long countId);
+
+    @Delete("Delete from sample where sample_region_id = #{locId} and sample_confirm_time = #{date}")
+    int deleteByCount(long locId, long date);
 }

@@ -28,8 +28,8 @@ public class CountService {
         return res;
     }
 
-    public SystemResult delete(long countId) {
-        SystemResult res = countAppoint.delete(countId);
+    public SystemResult delete(long countId, HttpServletRequest request) {
+        SystemResult res = countAppoint.delete(countId, request);
         return res;
     }
 }
