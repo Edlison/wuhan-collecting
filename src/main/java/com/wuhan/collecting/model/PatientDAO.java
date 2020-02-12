@@ -16,7 +16,7 @@ public class PatientDAO {
     private long id;
     private long sampleSex;
     private long sampleAge;
-    private long sampleConfirmTime;
+    private String sampleConfirmTime;
     private String sampleSourceText;
     private String sampleSourceUrl;
 }

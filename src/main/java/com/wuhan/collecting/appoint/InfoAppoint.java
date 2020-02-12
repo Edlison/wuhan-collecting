@@ -44,7 +44,7 @@ public class InfoAppoint {
     }
 
     public GetCountDTO getCount(long locId, String date) {
-        Count count = infoMapper.getCount(locId, TimeUtil.Date2TimeStamp(date));
+        Count count = infoMapper.getCount(locId, date);
         if (count == null) return null;
 
         GetCountDTO getCountDTO = new GetCountDTO();
@@ -72,7 +72,7 @@ public class InfoAppoint {
 
     public List<PatientDTO> getPat(long locId, String date) {
 
-        List<PatientDAO> patientDAOS = infoMapper.getPat(locId, TimeUtil.Date2TimeStamp(date));
+        List<PatientDAO> patientDAOS = infoMapper.getPat(locId, date);
 
         //Data Trans PatientDAO to PatientDTO
         List<PatientDTO> pats = new LinkedList<>();
@@ -94,7 +94,7 @@ public class InfoAppoint {
                     pat.setId(patientDAO.getId());
                     pat.setSampleSex(patientDAO.getSampleSex());
                     pat.setSampleAge(patientDAO.getSampleAge());
-                    pat.setSampleConfirmTime(TimeUtil.TimeStamp2Date(patientDAO.getSampleConfirmTime()));
+                    pat.setSampleConfirmTime(patientDAO.getSampleConfirmTime());
                     pat.setSampleSourceText(patientDAO.getSampleSourceText());
                     pat.setSampleSourceUrl(patientDAO.getSampleSourceUrl());
                     pat.setLocName(locName.toString());

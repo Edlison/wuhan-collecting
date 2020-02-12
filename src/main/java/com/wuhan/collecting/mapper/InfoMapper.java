@@ -24,10 +24,10 @@ public interface InfoMapper {
     String getLocName(@Param("id") long id);
 
     @Select("Select id, count_confirm, count_recover, count_dead, count_source_text, count_source_url from count where count_region_id = #{locId} and count_date = #{date}")
-    Count getCount(long locId, long date);
+    Count getCount(long locId, String date);
 
     @Select("Select id, sample_sex, sample_age, sample_confirm_time, sample_source_text, sample_source_url from sample where sample_region_id = #{locId} and sample_confirm_time = #{date}")
-    List<PatientDAO> getPat(long locId, long date);
+    List<PatientDAO> getPat(long locId, String date);
 
     @Select("Select level from region where id = #{locId}")
     long checkLevelById(@Param("locId") long locId);

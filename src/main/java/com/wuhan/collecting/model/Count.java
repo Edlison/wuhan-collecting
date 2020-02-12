@@ -16,4 +16,3 @@ public class Count {
     private long countCreateTime;
     private long countModifiedTime;
 }
-
