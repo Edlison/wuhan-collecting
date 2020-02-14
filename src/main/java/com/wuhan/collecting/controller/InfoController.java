@@ -59,12 +59,12 @@ public class InfoController {
     public String getCount(@RequestParam(name = "locId") long locId,
                            @RequestParam(name = "date") String date) {
         long level = infoMapper.checkLevelById(locId);
-        if (level < 3) {
-            SystemResult result = new SystemResult(601, "地区要精确到3级以上");
+        if (level < 2) {
+            SystemResult result = new SystemResult(601, "地区要精确到2级以上");
             return JSONObject.toJSONString(result);
         }
 
-        GetCountDTO getCountDTO = infoService.getCount(locId, date);
+        List<GetCountDTO> getCountDTO = infoService.getCount(locId, date);
 
         JSONObject res = new JSONObject();
 
@@ -87,8 +87,8 @@ public class InfoController {
     public String getPat(@RequestParam(name = "locId") long locId,
                          @RequestParam(name = "date") String date) {
         long level = infoMapper.checkLevelById(locId);
-        if (level < 3) {
-            SystemResult result = new SystemResult(701, "地区要精确到3级以上");
+        if (level < 2) {
+            SystemResult result = new SystemResult(701, "地区要精确到2级以上");
             return JSONObject.toJSONString(result);
         }
 

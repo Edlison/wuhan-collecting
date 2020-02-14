@@ -4,7 +4,6 @@ import com.wuhan.collecting.DTO.GetCountDTO;
 import com.wuhan.collecting.DTO.LocationDTO;
 import com.wuhan.collecting.DTO.PatientDTO;
 import com.wuhan.collecting.appoint.InfoAppoint;
-import com.wuhan.collecting.model.Count;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +22,9 @@ public class InfoService {
         return locs;
     }
 
-    public GetCountDTO getCount(long locId, String date) {
+    public List<GetCountDTO> getCount(long locId, String date) {
 
-        GetCountDTO getCountDTO = infoAppoint.getCount(locId, date);
+        List<GetCountDTO> getCountDTO = infoAppoint.getCount(locId, date);
 
         return getCountDTO;
     }
