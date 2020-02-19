@@ -51,6 +51,9 @@ public class CountAppoint {
 
         Count tempCount = countMapper.checkCount(count.getCountRegionId(), count.getCountDate());
 
+        if (tempCount != null)
+            return new SystemResult(311, "不能重复提交");
+
         if (countDTO.getCountConfirm() >= 0)
             count.setCountConfirm(countDTO.getCountConfirm());
         else
@@ -81,22 +84,15 @@ public class CountAppoint {
         else
             return new SystemResult(310, "用户信息出错");
 
-        if (tempCount == null) {
+        count.setCountCreateTime(System.currentTimeMillis() / 1000L);
+        count.setCountModifiedTime(System.currentTimeMillis() / 1000L);
 
-            count.setCountCreateTime(System.currentTimeMillis() / 1000L);
-            count.setCountModifiedTime(System.currentTimeMillis() / 1000L);
+        countMapper.insert(count);
 
-            countMapper.insert(count);
+        return new SystemResult(0, "count插入成功");
 
-            return new SystemResult(0, "count插入成功");
-        } else {
+//        countMapper.updateByRegionAndDate(count);
 
-            count.setCountModifiedTime(System.currentTimeMillis() / 1000L);
-
-            countMapper.updateByRegionAndDate(count);
-
-            return new SystemResult(0, "count更新成功");
-        }
     }
 
     public SystemResult update(CountDTO countDTO, HttpServletRequest request) {

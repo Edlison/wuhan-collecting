@@ -53,7 +53,9 @@ public class UserController {
     @ResponseBody
     public SystemResult register(User user) {
 
-        SystemResult res = userService.register(user);
+//        SystemResult res = userService.register(user);
+
+        SystemResult res = new SystemResult(299, "注册接口关闭");
 
         return res;
     }
